@@ -19,7 +19,6 @@ export const App = () => {
 
   return (
     <div>
-      <h1 className='text-3xl'>Welcome to Meteor!</h1>
       <RegisterForm />
       <ul>
         { tasks.map(task => <Task key={ task._id } task={ task } onCheckboxClick={toggleChecked} onDeleteClick={deleteTask}/>) }
