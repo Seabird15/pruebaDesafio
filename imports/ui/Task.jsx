@@ -1,5 +1,7 @@
 import React from 'react';
 
+//creacion del input para ingresar datos y pintarlos 
+
 export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
   return (
     <>

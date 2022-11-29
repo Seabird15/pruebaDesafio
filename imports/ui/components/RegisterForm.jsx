@@ -4,21 +4,29 @@ import { useForm } from "react-hook-form";
 
 export const RegisterForm = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
-  const [text,  setText] = useState("");
-  const [paterno, setPaterno] = useState("");
+  //const [text,  setText] = useState("");
+
 
   //ENVIAR DATOS A MONGO
   const onSubmit = (data) => {
     console.log(data)
 
-    if (!text && !paterno) return;
-  
-    TasksCollection.insert({
-      text: text,
-      createdAt: new Date()
-    });
 
-    setText("");
+    TasksCollection.insert({
+      ...data,
+      createdAt: new Date()
+  
+
+    })
+
+  //   if (!text) return;
+  // //con esto insertamos datos del primer input a mongo y la fecha en la cual se envia
+  //   TasksCollection.insert({
+  //     text: text,
+  //     createdAt: new Date()
+  //   });
+
+  //   setText("");
 
 
     
@@ -37,11 +45,10 @@ export const RegisterForm = () => {
         <input
           className="border border-gray-400 block py-1 px-4 w-full rounded focus:outline-none focus:border-teal-500 shadow-lg"
           type="text"
-          value={text}
           {...register("nombre", {
             required: true
           })}
-          placeholder="Type to add new tasks"
+          placeholder="Daniela Paz"
           onChange={(e) => setText(e.target.value)}
         />
         {errors.nombre?.type === 'required' && <p className="text-red-700">Debe ingresar un nombre</p>}
@@ -52,6 +59,7 @@ export const RegisterForm = () => {
           <input
             className="border border-gray-400 block py-1 px-4 w-full rounded focus:outline-none focus:border-teal-500 shadow-lg"
             type="text"
+            placeholder="Lizama"
             {...register('paterno',{
             required: true,
             
@@ -64,6 +72,7 @@ export const RegisterForm = () => {
           <input
             className="border border-gray-400 block py-1 px-4 w-full rounded focus:outline-none focus:border-teal-500 shadow-lg"
             type="text"
+            placeholder="Aravena"
             {...register('materno',{
               required: true
               })}
@@ -77,6 +86,7 @@ export const RegisterForm = () => {
           <input
             className="border border-gray-400 block py-1 px-4 w-full rounded focus:outline-none focus:border-teal-500 shadow-lg"
             type="text"
+            placeholder="12345678-9"
             {...register('rut',{
               required: true
               })}
@@ -89,8 +99,6 @@ export const RegisterForm = () => {
             required: true
             })} className="border border-gray-400 block py-1 px-4 w-full rounded focus:outline-none focus:border-teal-500 shadow-lg">
             <option value="mt">Metropolitana</option>
-            <option value="mt">Metropolitana</option>
-            <option value="mt">Metropolitana</option>
           </select>
         </div>
       </section>
@@ -100,6 +108,7 @@ export const RegisterForm = () => {
           <input
             className="border border-gray-400 block py-1 px-4 w-full rounded focus:outline-none focus:border-teal-500 shadow-lg"
             type="text"
+            placeholder="Ingrese una comuna"
             {...register('comuna',{
               required: true
               })}
@@ -110,6 +119,7 @@ export const RegisterForm = () => {
           <input
             className="border border-gray-400 block py-1 px-4 w-full rounded focus:outline-none focus:border-teal-500 shadow-lg"
             type="number"
+            placeholder="Ingrese un código postal"
             {...register('codigo',{
               required: true
               })}
